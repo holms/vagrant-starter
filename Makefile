@@ -15,10 +15,12 @@ install: check destroy install_chefstarter install_omnibus install_repo update f
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
+	exit 0
 ifdef virtualbox
 	@-echo -e "YES\e[39m"
 else
 	@-echo -e "NO!\n\n\e[5m Please install Virtualbox \e[25m\e[39m\n"
+	exit 0
 endif
 
 check_vagrant:
