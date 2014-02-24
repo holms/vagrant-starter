@@ -1,6 +1,0 @@
-CHEF_SERVER_HOSTNAME :=
-CHEF_SERVER_USERNAME :=root
-CHEF_SERVER_OS       :=rhel # rhel or debian
-CHEF_REPO_PATH       :=$(shell pwd)
-CHEF_NODE_USERNAME   :=$(CHEF_SERVER_USERNAME)
-
