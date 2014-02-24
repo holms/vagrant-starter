@@ -11,7 +11,7 @@ virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
 .PHONY: check install destroy update
 check: check_virtualbox check_vagrant
-install: destroy install_chefstarter install_omnibus install_chefrepo update finish
+install: destroy install_chefstarter install_omnibus install_repo update finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
@@ -40,7 +40,7 @@ install_omnibus:
 	@-echo -e "\n\e[31m\e5 Installing vagrant omnibus plugin... \n\e[39m"
 	vagrant plugin install vagrant-omnibus
 
-install_chefrepo:
+install_repo:
 	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
 	-mkdir -p repo/roles
 	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
