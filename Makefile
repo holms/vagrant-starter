@@ -32,7 +32,7 @@ endif
 
 install_chefstarter:
 	@-echo -e "\n\e[31m\e5 Clone chef-starter submodule... \n\e[39m"
-	git submodule init && git submodule update
+	git submodule update --init
 	@-echo -e "\n\e[31m\e5 Launching chef-solor installer... \n\e[39m"
 	cd chef-starter; make install_solo
 	cd ../
