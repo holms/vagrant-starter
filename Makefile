@@ -11,7 +11,7 @@ virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
 .PHONY: check install destroy update
 check: check_virtualbox check_vagrant
-install: destroy install_chefstarter install_omnibus install_repo update finish
+install: check destroy install_chefstarter install_omnibus install_repo update finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
