@@ -17,9 +17,24 @@ Requirements
 * Install Virtualbox
 * Install Vagrant
 
-On Osx
+For Ubuntu
+----------
 
+Don't install vagrant from apt-get, download deb package from here https://www.vagrantup.com/downloads.html <br />
+We need Vagrant 1.4.x, in ubuntu and even rubygems only 1.0 available
+
+```
+deb -i vagrant_1.4.3_x86_64.deb
+```
+
+For OSX:
+--------
+
+* Install Vagrant with osx installer from https://www.vagrantup.com/downloads.html
+* Install Virtualbox with osx installer (macports build out of date, doesn't work in maverics)
 * Install bash from Macports/Homebrew
+
+
 
 Preparation steps
 -----------------

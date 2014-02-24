@@ -11,16 +11,16 @@ virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
 .PHONY: check install destroy update
 check: check_virtualbox check_vagrant
-install: check destroy install_chefstarter install_omnibus install_repo update finish
+install: check destroy install_repo install_chefstarter install_omnibus update finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
-	exit 0
 ifdef virtualbox
 	@-echo -e "YES\e[39m"
 else
-	@-echo -e "NO!\n\n\e[5m Please install Virtualbox \e[25m\e[39m\n"
-	exit 0
+	@-echo -e "NO!\n\n\e[5m Please install Virtualbox \e[25m\e[39m\n\n"
+	@-echo -e " For ubuntu use this: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.3_i686.deb \n\n"
+	@exit 1
 endif
 
 check_vagrant:
@@ -28,7 +28,8 @@ check_vagrant:
 ifdef vagrant
 	@-echo -e "YES\e[39m"
 else
-	@-echo -e "NO!\n\n\e[5m Please install Vagrant \e[25m\e[39m\n"
+	@-echo -e "NO!\n\n\e[5m Please install Vagrant \e[25m\e[39m\n\n"
+	@exit 1
 endif
 
 install_chefstarter:
