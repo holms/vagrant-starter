@@ -1,0 +1,17 @@
+/cookbooks/
+/cookbooks
+/tmp
+.makerc
+Berksfile.lock
+data_bags/
+environments/
+cookbooks/
+site-cookbooks/
+roles/
+roles
+nodes/
+nodes
+.chef
+client.rb
+*.pem
+Berksfile
