@@ -31,7 +31,7 @@ endif
 
 install_chefstarter:
 	@-echo -e "\n\e[31m\e5 Clone chef-starter subtree... \n\e[39m"
-	git subtree add -P chef-starter https://github.com/holms/chef-starter master --squash
+	git clone https://github.com/holms/chef-starter
 	@-echo -e "\n\e[31m\e5 Launching chef-solor installer... \n\e[39m"
 	cd chef-starter; make install_solo
 	cd ../
