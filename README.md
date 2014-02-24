@@ -1,6 +1,8 @@
 Vagrant-starter
 ==================
 
+Automatization of Vagrant and Chef-solo environment.
+
 Requirements
 ------------
 
