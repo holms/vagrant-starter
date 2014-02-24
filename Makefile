@@ -41,12 +41,12 @@ install_omnibus:
 	vagrant plugin install vagrant-omnibus
 
 install_chefrepo:
-	@-echo -e "\n\e[31m\e5 Installing chef-repo env... \n\e[39m"
-	-cp chef-starter/.roles/my.cool.role.json.sample chef-repo/roles/
+	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
+	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
 	-rm -rf chef-starter/roles
 	-rm -rf chef-starter/Berksfile
 	-rm -rf chef-starter/.makerc
-	-cd chef-starter; ln -s ../chef-repo/roles roles ; ln -s ../chef-repo/Berksfile Berksfile ; ln -s ../chef-repo/.makerc .makerc ; cd ../
+	-cd chef-starter; ln -s ../repo/roles roles ; ln -s ../repo/Berksfile Berksfile ; ln -s ../repo/.makerc .makerc ; cd ../
 
 update:
 	cd chef-starter; make update; cd ../
@@ -56,7 +56,7 @@ destroy:
 	@-echo -e "Press enter to confirm: "; read confirm
 	-rm -rf .vagrant
 	-rm -rf chef-starter
-	-rm -rf chef-repo/roles/my.cool.role.json.sample
+	-rm -rf repo/roles/my.cool.role.json.sample
 
 finish:
 	@-echo -e "\n\e[31m\e5 We done! \n\e[39m"
