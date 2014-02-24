@@ -7,7 +7,9 @@ Description
 -----------
 
 This small kit gives you a nice ability to setup vagrant and chef-solo within one command!
-All chef `roles` and `Berksfile` located in `./chef-repo` directory.
+All you need to edit is located at `./repo` directory.
+
+Currently only OSX supported on host, and only guest in Vagrant. Will fix soon
 
 Requirements
 ------------
@@ -31,3 +33,29 @@ When adding new cookbooks to Berksfile, you need to to run make-update
 ```
 make update
 ```
+
+How to deploy
+--------------
+
+`./repo` folder is designed to be your repository.
+Just do `git init .` and add git origin with your github/bitbucket repo url
+
+Edit your repo/boxes.rb, currently only "web" vm added.
+Edit your repo/Berksfile to add cookbooks you'll use
+Edit your repo/roles/ and add those roles to boxes.rb to your vm config.
+
+And finally launch Vagrant:
+```
+vagrant up
+```
+
+Destroy
+-------
+
+This will destroy all your `./repo` also as everything that's been generated with `vagrant-starter` repo
+```
+make destroy
+```
+
+
+
