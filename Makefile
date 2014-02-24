@@ -42,7 +42,11 @@ install_omnibus:
 
 install_chefrepo:
 	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
+	-mkdir -p repo/roles
 	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
+	-cp .repo/Berksfile repo/
+	-cp .repo/.makerc repo/.makerc
+	-cp .repo/roles/* repo/roles
 	-rm -rf chef-starter/roles
 	-rm -rf chef-starter/Berksfile
 	-rm -rf chef-starter/.makerc
@@ -56,7 +60,7 @@ destroy:
 	@-echo -e "Press enter to confirm: "; read confirm
 	-rm -rf .vagrant
 	-rm -rf chef-starter
-	-rm -rf repo/roles/my.cool.role.json.sample
+	-rm -rf repo
 
 finish:
 	@-echo -e "\n\e[31m\e5 We done! \n\e[39m"
