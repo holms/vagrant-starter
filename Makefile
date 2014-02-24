@@ -1,4 +1,3 @@
--include .makerc
 UNAME := $(shell uname)
 
 ifeq ($(UNAME),Darwin)
@@ -43,12 +42,11 @@ install_omnibus:
 
 install_chefrepo:
 	@-echo -e "\n\e[31m\e5 Installing chef-repo env... \n\e[39m"
-	-mv chef-starter/roles/my.cool.role.json.sample chef-repo/roles/
+	-cp chef-starter/.roles/my.cool.role.json.sample chef-repo/roles/
 	-rm -rf chef-starter/roles
-	-ln -s chef-repo/roles chef-starter/roles
 	-rm -rf chef-starter/Berksfile
-	-ln -s chef-repo/Berksfile chef-starter/Berksfile
-	-ln -s chef-repo/.makerc chef-starter/.makerc
+	-rm -rf chef-starter/.makerc
+	-cd chef-starter; ln -s ../chef-repo/roles roles ; ln -s ../chef-repo/Berksfile Berksfile ; ln -s ../chef-repo/.makerc .makerc ; cd ../
 
 destroy:
 	@-echo -e "\n\e[31m\e[5m WARNING! \e[25m\e[31m THIS WILL DESTROY ALL CONFIGURATION, DO YOU REALLY WANT TO PROCESEED???!!111 IF NO - PRESS CTRL+C \e[39m\n"
