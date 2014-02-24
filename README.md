@@ -1,4 +1,4 @@
-pagalbadaiktais.lt deployment kit
+Vagrant-starter
 ==================
 
 Requirements
@@ -7,17 +7,16 @@ Requirements
 * Install Virtualbox
 * Install Vagrant
 
+On Osx
+
+* Install bash from Macports/Homebrew
+
 Preparation steps
 -----------------
 
-Install Omnibus plugin for vagrant
+Just launch make-install, it will do everything for you
 ```
-vagrant plugin install vagrant-omnibus
+make install
 ```
 
-Install chef-solo on your machine
-```
-cd chef-starter
-make install-solo
-make update
-```
+
