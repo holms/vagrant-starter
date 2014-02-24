@@ -9,9 +9,9 @@ endif
 vagrant := $(shell { type vagrant; } 2>/dev/null)
 virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
-.PHONY: check install destroy
+.PHONY: check install destroy update
 check: check_virtualbox check_vagrant
-install: destroy install_chefstarter install_omnibus install_chefrepo finish
+install: destroy install_chefstarter install_omnibus install_chefrepo update finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
@@ -47,6 +47,9 @@ install_chefrepo:
 	-rm -rf chef-starter/Berksfile
 	-rm -rf chef-starter/.makerc
 	-cd chef-starter; ln -s ../chef-repo/roles roles ; ln -s ../chef-repo/Berksfile Berksfile ; ln -s ../chef-repo/.makerc .makerc ; cd ../
+
+update:
+	cd chef-starter; make update; cd ../
 
 destroy:
 	@-echo -e "\n\e[31m\e[5m WARNING! \e[25m\e[31m THIS WILL DESTROY ALL CONFIGURATION, DO YOU REALLY WANT TO PROCESEED???!!111 IF NO - PRESS CTRL+C \e[39m\n"
