@@ -38,11 +38,12 @@ How to deploy
 --------------
 
 `./repo` folder is designed to be your repository.
+
 Just do `git init .` and add git origin with your github/bitbucket repo url
 
-Edit your repo/boxes.rb, currently only "web" vm added.
-Edit your repo/Berksfile to add cookbooks you'll use
-Edit your repo/roles/ and add those roles to boxes.rb to your vm config.
+* Edit your repo/boxes.rb, currently only "web" vm added.
+* Edit your repo/Berksfile to add cookbooks you'll use
+* Edit your repo/roles/ and add those roles to boxes.rb to your vm config.
 
 And finally launch Vagrant:
 ```
