@@ -44,9 +44,8 @@ install_chefrepo:
 	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
 	-mkdir -p repo/roles
 	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
-	-cp .repo/Berksfile repo/
-	-cp .repo/.makerc repo/.makerc
-	-cp .repo/roles/* repo/roles
+	-cp .repo/Berksfile .repo/.makerc .repo/boxes.rb repo/
+	-cp .repo/roles/* repo/roles/
 	-rm -rf chef-starter/roles
 	-rm -rf chef-starter/Berksfile
 	-rm -rf chef-starter/.makerc
