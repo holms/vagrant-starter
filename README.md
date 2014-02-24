@@ -9,7 +9,7 @@ Description
 This small kit gives you a nice ability to setup vagrant and chef-solo within one command!
 All you need to edit is located at `./repo` directory.
 
-Currently only OSX supported on host, and only guest in Vagrant. Will fix soon
+Currently only OSX supported on host, and only centos65 guest in Vagrant. Will fix soon
 
 Requirements
 ------------
