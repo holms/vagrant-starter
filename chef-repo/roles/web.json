@@ -1,0 +1,13 @@
+{
+   "name": "web",
+   "default_attributes": {
+   },
+   "json_class": "Chef::Role",
+   "run_list": [
+       "recipe[nginx]"
+   ],
+   "description": "",
+   "chef_type": "role",
+   "override_attributes": {
+   }
+}

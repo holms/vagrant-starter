@@ -1,0 +1,16 @@
+{
+   "name": "base",
+   "default_attributes": {
+   },
+   "json_class": "Chef::Role",
+   "run_list": [
+       "recipe[yum-centos]",
+       "recipe[yum-epel]",
+       "recipe[git]",
+       "recipe[vim]"
+   ],
+   "description": "",
+   "chef_type": "role",
+   "override_attributes": {
+   }
+}
