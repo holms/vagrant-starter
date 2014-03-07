@@ -1,14 +1,13 @@
  # !/usr/bin/env ruby
  # ^syntax detection
 
- site :opscode
+source "http://api.berkshelf.com"
 
 # This one is for 512mb instances, or it will crash. 
 # Chef-server requires 1GB of ram
 #cookbook 'swap',
 #    git: 'https://github.com/sethvargo-cookbooks/swap'
 
-cookbook 'chef-server'
 cookbook 'chef-client'
 cookbook 'yum'
 cookbook 'yum-centos'
