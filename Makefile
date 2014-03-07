@@ -46,7 +46,7 @@ install_omnibus:
 
 install_repo:
 	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
-	-mkdir -p repo/roles repo/site-cookbooks repo/data_bags
+	-mkdir -p repo/roles repo/site-cookbooks repo/data_bags repo/environments
 	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
 	-cp .repo/Berksfile .repo/.makerc .repo/boxes.rb repo/
 	-cp .repo/roles/* repo/roles/
@@ -59,6 +59,8 @@ link_repo:
 	-rm -rf chef-starter/roles
 	-rm -rf chef-starter/site-cookbooks
 	-rm -rf chef-starter/data_bags
+	-rm -rf chef-starter/environments
+	-ln -s `pwd`/repo/environments `pwd`/chef-starter/environments
 	-ln -s `pwd`/repo/data_bags `pwd`/chef-starter/data_bags
 	-ln -s `pwd`/repo/roles     `pwd`/chef-starter/roles
 	-ln -s `pwd`/repo/site-cookbooks `pwd`/chef-starter/site-cookbooks
