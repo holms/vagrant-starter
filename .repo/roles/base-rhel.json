@@ -1,12 +1,11 @@
 {
-   "name": "base",
+   "name": "base-rhel",
    "default_attributes": {
    },
    "json_class": "Chef::Role",
    "run_list": [
-       "recipe[git]",
-       "recipe[mercurial]",
-       "recipe[vim]"
+       "recipe[yum-centos]",
+       "recipe[yum-epel]"
    ],
    "description": "",
    "chef_type": "role",

@@ -9,9 +9,11 @@ source "http://api.berkshelf.com"
 #    git: 'https://github.com/sethvargo-cookbooks/swap'
 
 cookbook 'chef-client'
+cookbook 'apt'
 cookbook 'yum'
 cookbook 'yum-centos'
 cookbook 'yum-epel'
 cookbook 'nginx'
 cookbook 'vim'
 cookbook 'git'
+cookbook 'mercurial'
