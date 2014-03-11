@@ -8,10 +8,6 @@ load 'repo/boxes.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # Configure base box
-  config.vm.box = "centos65"
-  config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box"
-
   # vagrant-berkshelf hijacks cookbooks_path
   #config.berkshelf.enabled = false
 
@@ -23,7 +19,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # per node configuration
     config.vm.define opts[:name] do |node|
 
-        node.vm.hostname = "%s.vagrant" % opts[:name].to_s
+        node.vm.hostname = "%s.vagrant" % opts[:name]
+
+        # vagrant base boxes
+        images.each do |img|
+            if (img[:name] == opts[:os])
+                node.vm.box = img[:name]
+                node.vm.box_url = img[:url]
+            end
+        end        
 
         # port forwarding
         opts[:ports].each do |port|
