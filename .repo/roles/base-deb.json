@@ -1,5 +1,5 @@
 {
-   "name": "base-rhel",
+   "name": "base-deb",
    "default_attributes": {
    },
    "json_class": "Chef::Role",
