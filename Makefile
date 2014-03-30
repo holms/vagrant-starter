@@ -11,7 +11,7 @@ virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
 .PHONY: check install destroy update
 check: check_virtualbox check_vagrant
-install: check destroy install_chefstarter install_repo setup_chefstarter link_repo install_omnibus update finish
+install: check destroy install_chefstarter setup_chefstarter install_repo link_repo install_omnibus update finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
@@ -46,27 +46,19 @@ install_omnibus:
 
 install_repo:
 	@-echo -e "\n\e[31m\e5 Installing your repo env... \n\e[39m"
-	-mkdir -p repo/roles repo/site-cookbooks repo/data_bags repo/environments
-	-cp chef-starter/.roles/my.cool.role.json.sample repo/roles/
+	-mv chef-starter/repo ./
 	-cp .repo/Berksfile .repo/.makerc .repo/boxes.rb repo/
 	-cp .repo/roles/* repo/roles/
-	-rm -rf chef-starter/Berksfile
 	-rm -rf chef-starter/.makerc
-	-ln -s `pwd`/repo/Berksfile `pwd`/chef-starter/Berksfile
-	-ln -s `pwd`/repo/.makerc 	`pwd`/chef-starter/.makerc
 
 link_repo:
-	-rm -rf chef-starter/roles
-	-rm -rf chef-starter/site-cookbooks
-	-rm -rf chef-starter/data_bags
-	-rm -rf chef-starter/environments
-	-ln -s `pwd`/repo/environments `pwd`/chef-starter/environments
-	-ln -s `pwd`/repo/data_bags `pwd`/chef-starter/data_bags
-	-ln -s `pwd`/repo/roles     `pwd`/chef-starter/roles
-	-ln -s `pwd`/repo/site-cookbooks `pwd`/chef-starter/site-cookbooks
+	-rm -rf chef-starter/repo
+	ln -s `pwd`/repo/ `pwd`/chef-starter/repo
 
 update:
 	cd chef-starter; make update ; cd ../
+	@-echo -e "\n\e[31m\e5 Done! \n\e[39m"
+
 
 destroy:
 	@-echo -e "\n\e[31m\e[5m WARNING! \e[25m\e[31m THIS WILL DESTROY ALL CONFIGURATION, DO YOU REALLY WANT TO PROCESEED???!!111 IF NO - PRESS CTRL+C \e[39m\n"
