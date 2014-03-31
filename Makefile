@@ -49,6 +49,7 @@ install_repo:
 	-mv chef-starter/repo ./
 	-cp .repo/Berksfile .repo/.makerc .repo/boxes.rb repo/
 	-cp .repo/roles/* repo/roles/
+	-cp .repo/nodes/* repo/nodes/*
 	-rm -rf chef-starter/.makerc
 
 link_repo:
@@ -57,6 +58,8 @@ link_repo:
 
 update:
 	cd chef-starter; make update ; cd ../
+	rm -rf repo/cookbooks
+	cd repo ; berks vendor cookbooks
 	@-echo -e "\n\e[31m\e5 Done! \n\e[39m"
 
 
