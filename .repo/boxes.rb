@@ -1,6 +1,8 @@
 def boxes
     [
         { :name => 'web',
+          :ram => 1024,
+          :cpus => 2,
           :ports => [
               [80, 8080]
           ],

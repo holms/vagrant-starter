@@ -29,6 +29,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             end
         end
 
+        # ram and cpus
+        node.vm.provider "virtualbox" do |v|
+            v.memory = opts[:memory]
+            v.cpus = opts[:cpus]
+        end
+
         # port forwarding
         opts[:ports].each do |port|
             node.vm.network "forwarded_port", guest: port[0], host: port[1]
