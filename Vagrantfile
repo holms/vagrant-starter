@@ -14,6 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Installs chef-client/chef-solo
   config.omnibus.chef_version = :latest
 
+  config.ssh.forward_agent = true
+
   # vagrant multi-vm configuration
   boxes.each do |opts|
     # per node configuration
