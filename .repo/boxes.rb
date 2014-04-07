@@ -14,9 +14,6 @@ end
 
 def images
     [
-        { :name => 'vagrant-jessie',
-          :url => 'file:///Users/Holms/jessie.box'
-        },
         { :name => 'centos65',
           :url => 'https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box'
         },
