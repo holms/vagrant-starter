@@ -49,7 +49,6 @@ install_repo:
 	-mv chef-starter/repo ./
 	-cp .repo/Berksfile .repo/.makerc .repo/boxes.rb repo/
 	-cp .repo/roles/* repo/roles/
-	-cp .repo/nodes/* repo/nodes/*
 	-rm -rf chef-starter/.makerc
 
 link_repo:
@@ -72,3 +71,9 @@ destroy:
 
 finish:
 	@-echo -e "\n\e[31m\e5 We done! \n\e[39m"
+
+cookbook:
+	@-echo "New cookbook name: "; read cookbook_name; \
+	echo -e "\n\e[31mCreating cookbook $$cookbook_name in repo/site-cookbooks directory ... \e[39m"; \
+	cd repo/site-cookbooks; \
+	berks cookbook $$cookbook_name

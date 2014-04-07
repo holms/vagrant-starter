@@ -35,7 +35,6 @@ For OSX:
 * Install bash from Macports/Homebrew
 
 
-
 Preparation steps
 -----------------
 
@@ -65,6 +64,28 @@ And finally launch Vagrant:
 vagrant up
 ```
 
+Chef management
+---------------
+
+Provisioning:
+
+```
+vagrant provision web
+```
+
+Creating new cookbook
+
+```
+make cookbook
+```
+
+Berkshelf cookbook update
+
+```
+make update
+```
+
+
 Destroy
 -------
 
@@ -72,6 +93,4 @@ This will destroy all your `./repo` also as everything that's been generated wit
 ```
 make destroy
 ```
-
-
 
