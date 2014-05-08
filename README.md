@@ -61,8 +61,21 @@ Just do `git init .` and add git origin with your github/bitbucket repo url
 
 And finally launch Vagrant:
 ```
-vagrant up
+vagrant up web
 ```
+
+Reload VM
+
+```
+vagrant reload web
+```
+
+Shutdown VM
+
+```
+vagrant halt web
+```
+
 
 Chef management
 ---------------
