@@ -11,8 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # vagrant-berkshelf hijacks cookbooks_path
   #config.berkshelf.enabled = false
 
-  # Installs chef-client/chef-solo
-  config.omnibus.chef_version = :latest
 
   config.ssh.forward_agent = true
 
@@ -42,30 +40,46 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             node.vm.network "forwarded_port", guest: port[0], host: port[1]
         end
 
-        # chef-solo configuration
-        node.vm.provision :chef_solo do |chef|
+        # check if chef being used
+        unless opts[:chef].nil?
 
-            # custom chef-solo paths
-            chef.cookbooks_path = ["repo/cookbooks", "repo/site-cookbooks"]
-            chef.roles_path = "repo/roles"
-            chef.data_bags_path = "repo/data_bags"
+            # Installs chef-client/chef-solo
+            config.omnibus.chef_version = :latest
 
-            opts[:roles].each do |role|
-                chef.add_role("#{role}")
-            end
+            # chef-solo configuration
+            node.vm.provision :chef_solo do |chef|
 
-            # stop chef-solo from breaking the box
-            chef.json = {
-                "authorization" => {
-                    "sudo" => {
-                        "users" => [ "vagrant" ],
-                        "passwordless" => true,
-                        "sudoers_defaults" => ['!requiretty'],
+                # custom chef-solo paths
+                chef.cookbooks_path = ["repo/cookbooks", "repo/site-cookbooks"]
+                chef.roles_path = "repo/roles"
+                chef.data_bags_path = "repo/data_bags"
+
+                opts[:chef].each do |role|
+                    chef.add_role("#{role}")
+                end
+
+                # stop chef-solo from breaking the box
+                chef.json = {
+                    "authorization" => {
+                        "sudo" => {
+                            "users" => [ "vagrant" ],
+                            "passwordless" => true,
+                            "sudoers_defaults" => ['!requiretty'],
+                        }
                     }
                 }
-            }
 
-      end
+            end
+        end
+
+        # check if ansible being used
+        unless opts[:ansible].nil?
+            node.vm.provision "ansible" do |ansible|
+                opts[:ansible].each do |playbook|
+                    ansible.playbook = "repo/#{playbook}"
+                end
+            end
+        end
     end
   end
 end
