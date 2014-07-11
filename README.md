@@ -76,6 +76,12 @@ Shutdown VM
 vagrant halt web
 ```
 
+Ansible management
+------------------
+
+Edit ```.makerc``` and uncomment ```USE_ANSIBLE=1``` variable. By default it's commented out.
+
+Create a playbook directory in ```repo/myplaybook/main.yml```, add this playbook path to your ```repo/boxes.rb``` vm configuration
 
 Chef management
 ---------------
