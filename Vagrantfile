@@ -11,34 +11,47 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # vagrant-berkshelf hijacks cookbooks_path
   #config.berkshelf.enabled = false
 
-
-  config.ssh.forward_agent = true
-
   # vagrant multi-vm configuration
   boxes.each do |opts|
     # per node configuration
     config.vm.define opts[:name] do |node|
-
-        node.vm.hostname = "%s.vagrant" % opts[:name]
+        node.ssh.forward_agent = true
 
         # vagrant base boxes
         images.each do |img|
             if (img[:name] == opts[:os])
-                node.vm.box = img[:name]
-                node.vm.box_url = img[:url]
+               node.vm.box = img[:name]
+               node.vm.box_url = img[:url]
             end
         end
 
-        # ram and cpus
+        # VirtualBox provider
         node.vm.provider "virtualbox" do |v|
-            v.memory = opts[:memory]
-            v.cpus = opts[:cpus]
+            if opts[:provider] == 'virtualbox'
+                v.memory = opts[:memory]
+                v.cpus = opts[:cpus]
+
+                # port forwarding
+                opts[:ports].each do |port|
+                    node.vm.network "forwarded_port", guest: port[0], host: port[1]
+                end
+            end
         end
 
-        # port forwarding
-        opts[:ports].each do |port|
-            node.vm.network "forwarded_port", guest: port[0], host: port[1]
+        # DigitalOcean provider
+        node.vm.provider "digital_ocean" do |v|
+            if opts[:provider] == 'digital_ocean'
+                #node.ssh.private_key_path = '~/.ssh/id_rsa'
+                node.vm.box = 'digital_ocean'
+                node.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+                v.hostname = opts[:name]
+                v.token = opts[:token]
+                v.image = opts[:image]
+                v.region = opts[:region]
+                v.size = opts[:size]
+            end
         end
+
 
         # check if chef being used
         unless opts[:chef].nil?

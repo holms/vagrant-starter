@@ -1,20 +1,34 @@
 def boxes
     [
         { :name => 'web',
-          :memory => 1024,
+          :provider => 'virtualbox',
+          :memory => 2048,
           :cpus => 2,
           :ports => [
-              [80, 8080]
+              [80, 8080],
           ],
           :os => 'ubuntu1404',
           #:chef => ['base-deb', 'base', 'web']
-          #:ansible => ['']
+          #:ansible => ['playbook/dev.yml']
         },
+        #{ :name => 'web-do',
+        #  :provider => 'digital_ocean',
+        #  :os => 'digital_ocean',
+        #  :size => '2GB',
+        #  :image => 'Ubuntu 14.04 x64',
+        #  :region => 'ams2',
+        #  :token => '',
+        #  :ansible => ['shrinktheapp-api/dev.yml']
+        #}
     ]
 end
 
+
 def images
     [
+        { :name => 'digital_ocean',
+          :url => 'https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box'
+        },
         { :name => 'centos65',
           :url => 'https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box'
         },

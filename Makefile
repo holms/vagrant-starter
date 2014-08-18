@@ -55,10 +55,10 @@ setup_chefstarter:
 install_ansible:
 	@-echo -e "\n\e[31m\e5 Installing ansible... \n\e[39m"
 ifdef OSX
-	sudo port -v install ansible
+	sudo pip-2.7 -v install ansible
 endif
 ifndef OSX
-	sudo apt-get install ansible
+	sudo pip install ansible
 endif
 
 install_omnibus:
