@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # per node configuration
     config.vm.define opts[:name] do |node|
         node.ssh.forward_agent = true
+        #node.ssh.private_key_path = '~/.ssh/id_rsa'
 
         # vagrant base boxes
         images.each do |img|
@@ -41,7 +42,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # DigitalOcean provider
         node.vm.provider "digital_ocean" do |v|
             if opts[:provider] == 'digital_ocean'
-                #node.ssh.private_key_path = '~/.ssh/id_rsa'
                 node.vm.box = 'digital_ocean'
                 node.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
                 v.hostname = opts[:name]
