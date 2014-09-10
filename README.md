@@ -39,16 +39,18 @@ Preparation steps
 -----------------
 
 Just launch make-install, it will do everything for you
+
 ```
 make install
 ```
 
 When adding new cookbooks to Berksfile, you need to to run make-update
+
 ```
 make update
 ```
 
-How to deploy
+Local provisioning
 --------------
 
 `./repo` folder is designed to be your repository.
@@ -59,21 +61,27 @@ Just do `git init .` and add git origin with your github/bitbucket repo url
 * Edit your repo/Berksfile to add cookbooks you'll use
 * Edit your repo/roles/ and add those roles to boxes.rb to your vm config.
 
-And finally launch Vagrant:
+## Create VM
+
 ```
 vagrant up web
 ```
 
-Reload VM
+## Reload VM
 
 ```
 vagrant reload web
 ```
 
-Shutdown VM
+## Shutdown VM
 
 ```
 vagrant halt web
+```
+## Delete VM
+
+```
+vagrant destroy web
 ```
 
 Ansible management
@@ -83,22 +91,28 @@ Edit ```.makerc``` and uncomment ```USE_ANSIBLE=1``` variable. By default it's c
 
 Create a playbook directory in ```repo/myplaybook/main.yml```, add this playbook path to your ```repo/boxes.rb``` vm configuration
 
-Chef management
----------------
-
-Provisioning:
+## Provisioning
 
 ```
 vagrant provision web
 ```
 
-Creating new cookbook
+Chef management
+---------------
+
+## Provisioning:
+
+```
+vagrant provision web
+```
+
+## Creating new cookbook
 
 ```
 make cookbook
 ```
 
-Berkshelf cookbook update
+## Berkshelf cookbook update
 
 ```
 make update
@@ -113,3 +127,25 @@ This will destroy all your `./repo` also as everything that's been generated wit
 make destroy
 ```
 
+Provisioning to DigitalOcean
+----------------------------
+
+## Creating new droplet
+
+In `repo/boxes.rb` you'll find commented out configuration template for digital ocean droplet. Here's how to create it
+
+```
+vagrant up myserver.mydomain.com --provider=digital_ocean
+```
+
+## Acknowledge existing droplet
+
+If you have existing droplet on Digital Ocean, you can tell vagrant to manage it. First of all don't forget to add droplet configuration to `repo/boxes.rb`. Then you need to perform some actions:
+
+```
+vagrant up myserver.mydomain.com --provider=digital_ocean
+```
+
+## Troubles
+
+In case you have troubles with ssl, you need curl ssl certificates to be installed. 
