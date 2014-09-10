@@ -23,7 +23,7 @@ install_provision: install_chefstarter setup_chefstarter install_repo_chef link_
 endif
 
 check: check_virtualbox check_vagrant
-install: check destroy install_provision finish
+install: check destroy install_plugins install_provision finish
 
 check_virtualbox:
 	@-echo -e "\n\e[31m\e5 Checking if Virtualbox installed... \c"
@@ -43,6 +43,10 @@ else
 	@-echo -e "NO!\n\n\e[5m Please install Vagrant \e[25m\e[39m\n\n"
 	@exit 1
 endif
+
+install_plugins:
+	@-echo -e "\n\e[31m\e5 Install digital ocean plugin \n\e[39m"
+	vagrant plugin install vagrant-digitalocean
 
 install_chefstarter:
 	@-echo -e "\n\e[31m\e5 Clone chef-starter subtree... \n\e[39m"
