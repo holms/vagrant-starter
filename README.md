@@ -35,6 +35,13 @@ For OSX:
 * Install bash from Macports/Homebrew
 
 
+Bugs:
+-----
+
+Currently there's a bug which can be workarounded, although it's a bit annoying. 
+
+* To use digital ocean provider, you need to have this line in your Vagrantfile `node.ssh.private_key_path = '~/.ssh/id_rsa'` which is currently commented out. It's commented out because you local vm provisiong will fail. Currently I'm in search how to fix this. You'll have to comment in and out this line when you want to use local vm's instead of digital ocean and vice-versa
+
 Preparation steps
 -----------------
 
@@ -129,6 +136,11 @@ make destroy
 
 Provisioning to DigitalOcean
 ----------------------------
+
+## Pre-configuration
+
+* You need to have private ssh key here: `~/.ssh/id_rsa`
+* You need to add api key for each droplet in `repo/boxes.rb`
 
 ## Creating new droplet
 
