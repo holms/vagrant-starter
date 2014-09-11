@@ -4,7 +4,7 @@ file_client: local
 
 file_roots:
     base:
-        - /srv/salt/roots
+        - /srv/salt/states
         - /srv/salt/formulas
 
 pillar_roots:
