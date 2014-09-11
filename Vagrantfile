@@ -103,8 +103,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 salt.minion_config = "repo/minion"
                 salt.run_highstate = true
                 salt.colorize = true
-                salt.log_level = 'all'
-                #salt.verbose = true
+                salt.log_level = 'info'
+                salt.verbose = true
                 #opts[:salt].each do |minion|
                 #end
             end
