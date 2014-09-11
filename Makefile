@@ -14,12 +14,16 @@ virtualbox := $(shell { type virtualbox; } 2>/dev/null)
 
 .PHONY: check install install_provision destroy update
 
-ifdef USE_ANSIBLE
+ifeq ($(USE_ANSIBLE),1)
 install_provision: install_ansible install_repo_ansible
 endif
 
-ifndef USE_ANSIBLE
+ifeq ($(USE_CHEF),1)
 install_provision: install_chefstarter setup_chefstarter install_repo_chef link_repo_chef install_omnibus update
+endif
+
+ifeq ($(USE_SALT),1)
+install_provision: install_salt install_repo_salt
 endif
 
 check: check_virtualbox check_vagrant
@@ -65,6 +69,17 @@ ifndef OSX
 	sudo pip install ansible
 endif
 
+install_salt:
+	@-echo -e "\n\e[31m\e5 Installing SaltStack... \n\e[39m"
+ifdef OSX
+	sudo port -v install swig-python
+	sudo pip-2.7 -v install salt
+endif
+ifndef OSX
+	sudo apt-get install swig
+	sudo pip install salt
+endif
+
 install_omnibus:
 	@-echo -e "\n\e[31m\e5 Installing vagrant omnibus plugin... \n\e[39m"
 	vagrant plugin install vagrant-omnibus
@@ -79,6 +94,11 @@ install_repo_chef:
 install_repo_ansible:
 	@-echo -e "\n\e[31m\e5 Installing your ansible repo env... \n\e[39m"
 	-cp -R .repo-ansible repo
+	-cp .repo-chef/boxes.rb repo/boxes.rb
+
+install_repo_salt:
+	@-echo -e "\n\e[31m\e5 Installing your salt repo env... \n\e[39m"
+	-cp -R .repo-salt repo
 	-cp .repo-chef/boxes.rb repo/boxes.rb
 
 link_repo_chef:

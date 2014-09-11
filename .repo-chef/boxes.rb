@@ -10,6 +10,7 @@ def boxes
           :os => 'ubuntu1404',
           #:chef => ['base-deb', 'base', 'web']
           #:ansible => ['playbook/dev.yml']
+          #:salt => 1
         },
         #{ :name => 'web-do',
         #  :provider => 'digital_ocean',

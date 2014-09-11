@@ -93,6 +93,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 end
             end
         end
+
+        # check if saltstack being used
+        unless opts[:salt].nil?
+
+            config.vm.synced_folder "repo/salt/", "/srv/salt/"
+
+            node.vm.provision "salt" do |salt|
+                salt.minion_config = "repo/minion"
+                salt.run_highstate = true
+                salt.colorize = true
+                salt.log_level = 'all'
+                #salt.verbose = true
+                #opts[:salt].each do |minion|
+                #end
+            end
+        end
     end
   end
 end
