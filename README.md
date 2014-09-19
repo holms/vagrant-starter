@@ -1,24 +1,22 @@
-Vagrant-starter
-==================
+# Vagrant-starter
 
 Automatization of Vagrant and Chef-solo environment.
 
-Description
------------
+## Description
 
 This small kit gives you a nice ability to setup vagrant and chef-solo within one command!
 All you need to edit is located at `./repo` directory.
 
 Currently only OSX supported on host, and only centos65 guest in Vagrant. Will fix soon
 
-Requirements
-------------
+## Requirements
 
 * Install Virtualbox
 * Install Vagrant
 
-For Ubuntu
-----------
+## Installation
+
+### For Ubuntu
 
 Don't install vagrant from apt-get, download deb package from here https://www.vagrantup.com/downloads.html <br />
 We need Vagrant 1.4.x, in ubuntu and even rubygems only 1.0 available
@@ -27,23 +25,21 @@ We need Vagrant 1.4.x, in ubuntu and even rubygems only 1.0 available
 deb -i vagrant_1.4.3_x86_64.deb
 ```
 
-For OSX:
---------
+### For OSX
 
 * Install Vagrant with osx installer from https://www.vagrantup.com/downloads.html
 * Install Virtualbox with osx installer (macports build out of date, doesn't work in maverics)
 * Install bash from Macports/Homebrew
 
 
-Bugs:
------
+## Bugs
 
-Currently there's a bug which can be workarounded, although it's a bit annoying. 
+
+Currently there's a bug which can be workarounded, although it's a bit annoying.
 
 * To use digital ocean provider, you need to have this line in your Vagrantfile `node.ssh.private_key_path = '~/.ssh/id_rsa'` which is currently commented out. It's commented out because you local vm provisiong will fail. Currently I'm in search how to fix this. You'll have to comment in and out this line when you want to use local vm's instead of digital ocean and vice-versa
 
-Preparation steps
------------------
+## Preparation steps
 
 Just launch make-install, it will do everything for you
 
@@ -57,8 +53,7 @@ When adding new cookbooks to Berksfile, you need to to run make-update
 make update
 ```
 
-Local provisioning
---------------
+## Local usage
 
 `./repo` folder is designed to be your repository.
 
@@ -68,81 +63,77 @@ Just do `git init .` and add git origin with your github/bitbucket repo url
 * Edit your repo/Berksfile to add cookbooks you'll use
 * Edit your repo/roles/ and add those roles to boxes.rb to your vm config.
 
-## Create VM
+### Create VM
 
 ```
 vagrant up web
 ```
 
-## Reload VM
+### Reload VM
 
 ```
 vagrant reload web
 ```
 
-## Shutdown VM
+### Shutdown VM
 
 ```
 vagrant halt web
 ```
-## Delete VM
+### Delete VM
 
 ```
 vagrant destroy web
 ```
+---------------
+## Provisioning
 
-Ansible management
-------------------
+### Ansible management
 
 Edit ```.makerc``` and uncomment ```USE_ANSIBLE=1``` variable. By default it's commented out.
 
 Create a playbook directory in ```repo/myplaybook/main.yml```, add this playbook path to your ```repo/boxes.rb``` vm configuration
 
-## Provisioning
+#### Provisioning
 
 ```
 vagrant provision web
 ```
 
-Chef management
----------------
+### Chef management
 
-## Provisioning:
+#### Provisioning
 
 ```
 vagrant provision web
 ```
 
-## Creating new cookbook
+#### Creating new cookbook
 
 ```
 make cookbook
 ```
 
-## Berkshelf cookbook update
+#### Berkshelf cookbook update
 
 ```
 make update
 ```
-
-
-Destroy
--------
+## Destroy
 
 This will destroy all your `./repo` also as everything that's been generated with `vagrant-starter` repo
 ```
 make destroy
 ```
 
-Provisioning to DigitalOcean
-----------------------------
+## Provisioning to DigitalOcean
 
-## Pre-configuration
+### Pre-configuration
 
 * You need to have private ssh key here: `~/.ssh/id_rsa`
 * You need to add api key for each droplet in `repo/boxes.rb`
 
-## Creating new droplet
+### Creating new droplet
 
 In `repo/boxes.rb` you'll find commented out configuration template for digital ocean droplet. Here's how to create it
 
@@ -150,7 +141,7 @@ In `repo/boxes.rb` you'll find commented out configuration template for digital 
 vagrant up myserver.mydomain.com --provider=digital_ocean
 ```
 
-## Acknowledge existing droplet
+### Acknowledge existing droplet
 
 If you have existing droplet on Digital Ocean, you can tell vagrant to manage it. First of all don't forget to add droplet configuration to `repo/boxes.rb`. Then you need to perform some actions:
 
@@ -158,6 +149,6 @@ If you have existing droplet on Digital Ocean, you can tell vagrant to manage it
 vagrant up myserver.mydomain.com --provider=digital_ocean
 ```
 
-## Troubles
+### Troubles
 
-In case you have troubles with ssl, you need curl ssl certificates to be installed. 
+In case you have troubles with ssl, you need curl ssl certificates to be installed.
