@@ -99,6 +99,18 @@ Create a playbook directory in ```repo/myplaybook/main.yml```, add this playbook
 ```
 vagrant provision web
 ```
+### Saltstack management
+
+Edit `.makerc` and uncomment `USE_SALT=1` variable.
+In `repo/boxes.rb` you need to add `:salt=>1` to enable salt.
+Currently only one minion supported.
+
+#### Provisioning
+
+```
+vagrant provision web
+```
+
 
 ### Chef management
 
