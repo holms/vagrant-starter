@@ -50,6 +50,7 @@ endif
 
 install_plugins:
 	@-echo -e "\n\e[31m\e5 Install digital ocean plugin \n\e[39m"
+	sudo gem install multipart-post -v '2.0.0'
 	vagrant plugin install vagrant-digitalocean
 
 install_chefstarter:
