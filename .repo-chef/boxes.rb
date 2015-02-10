@@ -44,6 +44,9 @@ def images
         },
         { :name => 'ubuntu1404',
           :url => 'https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box'
+        },
+        { :name => 'ubuntu1404-nochef',
+          :url => 'https://github.com/holms/vagrant-starter/releases/download/0.1/Ubuntu-14.04-server-amd64.box'
         }
     ]
 end
