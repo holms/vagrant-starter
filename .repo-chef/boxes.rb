@@ -16,7 +16,7 @@ def boxes
         #  :provider => 'digital_ocean',
         #  :os => 'digital_ocean',
         #  :size => '2GB',
-        #  :image => 'Ubuntu 14.04 x64',
+        #  :slug => 'ubuntu-14-04-x64',
         #  :region => 'ams2',
         #  :token => '',
         #  :ansible => ['playbook/dev.yml']
