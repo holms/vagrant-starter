@@ -16,7 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # per node configuration
     config.vm.define opts[:name] do |node|
         node.ssh.forward_agent = true
-        node.ssh.insert_key = false
         #node.ssh.private_key_path = '~/.ssh/id_rsa'
 
         # vagrant base boxes
