@@ -47,11 +47,6 @@ Just launch make-install, it will do everything for you
 make install
 ```
 
-When adding new cookbooks to Berksfile, you need to to run make-update
-
-```
-make update
-```
 
 ## Local usage
 
