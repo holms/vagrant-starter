@@ -32,6 +32,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 v.memory = opts[:memory]
                 v.cpus = opts[:cpus]
 
+                # private ip
+                unless opts[:private_ip].nil?
+                  node.vm.network "private_network", ip: opts[:private_ip]
+                end
+
                 # port forwarding
                 opts[:ports].each do |port|
                     node.vm.network "forwarded_port", guest: port[0], host: port[1]

@@ -4,6 +4,7 @@ def boxes
           :provider => 'virtualbox',
           :memory => 2048,
           :cpus => 2,
+          #:private_ip => '192.168.1.100',
           :ports => [
               [80, 8080],
           ],
