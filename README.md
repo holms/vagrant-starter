@@ -163,4 +163,5 @@ vagrant up myserver.mydomain.com --provider=digital_ocean
 
 ### Troubles
 
-In case you have troubles with ssl, you need curl ssl certificates to be installed.
+* In case you have troubles with ssl, you need curl ssl certificates to be installed.
+* If you have troubles with ssh and ansible, check if you don't have user root set in your playbook
