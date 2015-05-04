@@ -40,7 +40,7 @@ def images
           :url => 'https://downloads.sourceforge.net/project/vagrantboxjessie/debian80.box'
         },
         { :name => 'ubuntu1404',
-          :url => 'https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box'
+          :url => 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
         },
         { :name => 'ubuntu1404-nochef',
           :url => 'https://github.com/holms/vagrant-starter/releases/download/0.1/Ubuntu-14.04-server-amd64.box'
