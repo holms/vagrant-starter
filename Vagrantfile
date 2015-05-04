@@ -38,9 +38,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 end
 
                 # port forwarding
-                opts[:ports].each do |port|
-                    node.vm.network "forwarded_port", guest: port[0], host: port[1]
+                unless opts[:ports].nil?
+                    opts[:ports].each do |port|
+                        node.vm.network "forwarded_port", guest: port[0], host: port[1]
+                    end
                 end
+
             end
         end
 
