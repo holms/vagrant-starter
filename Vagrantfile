@@ -32,22 +32,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 v.memory = opts[:memory]
                 v.cpus = opts[:cpus]
 
-                # Ansible requires few additional parameters in order to work with virtualbox
-                node.vm.provision "ansible" do |ansible|
-                    opts[:ansible].each do |playbook|
-                        ansible.playbook = "repo/#{playbook}"
-                    end
-                    ansible.sudo = true
-                    ansible.host_key_checking = false
-                    ansible.verbose =  'vvvv'
-                    ansible.raw_ssh_args = ['-o UserKnownHostsFile=/dev/null']
-                    ansible.extra_vars = {
-                       ansible_ssh_user: 'vagrant',
-                       ansible_connection: 'ssh',
-                       ansible_ssh_args: '-o ForwardAgent=yes -A'
-                     }
-                end
-
                 # port forwarding
                 opts[:ports].each do |port|
                     node.vm.network "forwarded_port", guest: port[0], host: port[1]
