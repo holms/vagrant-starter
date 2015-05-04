@@ -33,14 +33,14 @@ def images
         { :name => 'centos7',
           :url => 'https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box'
         },
-        { :name => 'debian72',
-          :url => 'https://www.dropbox.com/s/23gupgb0xompvkm/Wheezy64.box?dl=1'
-        },
-        { :name => 'debian80',
-          :url => 'https://downloads.sourceforge.net/project/vagrantboxjessie/debian80.box'
-        },
         { :name => 'ubuntu1404',
           :url => 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
+        },
+        { :name => 'debian8',
+          :url => 'https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box'
+        },
+        { :name => 'debian72',
+          :url => 'https://www.dropbox.com/s/23gupgb0xompvkm/Wheezy64.box?dl=1'
         },
         { :name => 'ubuntu1404-nochef',
           :url => 'https://github.com/holms/vagrant-starter/releases/download/0.1/Ubuntu-14.04-server-amd64.box'
