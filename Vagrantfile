@@ -32,9 +32,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 v.memory = opts[:memory]
                 v.cpus = opts[:cpus]
 
-                # private ip
+                # Private ip with second adapter only, else it won't work with centos
                 unless opts[:private_ip].nil?
-                  node.vm.network "private_network", ip: opts[:private_ip]
+                  node.vm.network "private_network", ip: opts[:private_ip], :adapter => 2
                 end
 
                 # port forwarding
