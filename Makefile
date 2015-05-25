@@ -51,6 +51,7 @@ endif
 install_plugins:
 	@-echo -e "\n\e[31m\e5 Install digital ocean plugin \n\e[39m"
 	sudo vagrant plugin install vagrant-digitalocean
+	sudo vagrant plugin install vagrant-vbox-snapshot
 
 install_chefstarter:
 	@-echo -e "\n\e[31m\e5 Clone chef-starter subtree... \n\e[39m"
